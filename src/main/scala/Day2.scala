@@ -2,19 +2,18 @@
 object Day2 {
 
   def findFloor(instructions: String): Int = {
-    var floor = 0
-    for ((char, position) <- instructions.zipWithIndex) {
-      if (char == '(') {
-        floor += 1
-      } else if (char == ')') {
-        floor -= 1
+    instructions.zipWithIndex.foldLeft(0) { case (floor, (char, position)) =>
+      char match {
+        case '(' => floor + 1
+        case ')' => floor - 1
+        case _   => floor
       }
-      if (floor == -1){
-        return position + 1
-      }
+    } match {
+      case f if f == -1 => instructions.length + 1
+      case _            => -1
     }
-    -1
   }
+
   def main(args: Array[String]): Unit = {
     println("Enter the instructions:")
     val instructions = scala.io.StdIn.readLine()
