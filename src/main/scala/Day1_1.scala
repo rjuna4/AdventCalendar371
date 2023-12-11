@@ -1,5 +1,5 @@
-// Day 2 Question 1
-object Day2 {
+// Day 1 Question 2
+object Day1_1 {
 
   def findFloor(instructions: String): Int = {
     instructions.zipWithIndex.foldLeft(0) { case (floor, (char, position)) =>
